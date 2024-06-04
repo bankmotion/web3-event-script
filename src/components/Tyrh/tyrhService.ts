@@ -12,6 +12,7 @@ const updateTyrhLiquid = async (pastEvents: EventLog[]) => {
     );
     await addOrUpdateLiquid(event.returnValues.from as string, -value);
     await addOrUpdateLiquid(event.returnValues.to as string, value);
+    console.log(`Transfer updated at block ${Number(event.blockNumber)}`);
   }
 };
 
