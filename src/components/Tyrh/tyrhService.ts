@@ -1,5 +1,5 @@
 import { EventLog } from "web3";
-import { addOrUpdateLiquid } from "./tyrhModel";
+import { addOrUpdateTyrh } from "./tyrhModel";
 import { ethers } from "ethers";
 
 const updateTyrhLiquid = async (pastEvents: EventLog[]) => {
@@ -10,8 +10,14 @@ const updateTyrhLiquid = async (pastEvents: EventLog[]) => {
         ethers.formatEther(event.returnValues.value as string)
       ).toFixed(6)
     );
-    await addOrUpdateLiquid(event.returnValues.from as string, -value);
-    await addOrUpdateLiquid(event.returnValues.to as string, value);
+    await addOrUpdateTyrh({
+      address: event.returnValues.from as string,
+      liquid: -value,
+    });
+    await addOrUpdateTyrh({
+      address: event.returnValues.to as string,
+      liquid: value,
+    });
     console.log(`Transfer updated at block ${Number(event.blockNumber)}`);
   }
 };

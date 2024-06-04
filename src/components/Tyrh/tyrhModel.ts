@@ -1,4 +1,5 @@
 import executeQuery from "../../db";
+import { TyrhInterface } from "./tyrhInterface";
 
 const existAddress = async (address: string) => {
   try {
@@ -12,15 +13,29 @@ const existAddress = async (address: string) => {
   }
 };
 
-const addOrUpdateLiquid = async (address: string, value: number) => {
+const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
   try {
-    const exist = await existAddress(address);
+    const exist = await existAddress(tyrhObject.address);
+    if (!tyrhObject.liquid) {
+      tyrhObject.liquid = 0;
+    }
+    if (!tyrhObject.staking) {
+      tyrhObject.staking = 0;
+    }
     if (exist) {
-      const updateQuery = `UPDATE tyrh SET liquid = liquid + ? WHERE address = ?`;
-      await executeQuery(updateQuery, [value, address]);
+      const updateQuery = `UPDATE tyrh SET liquid = liquid + ?, staking = staking + ? WHERE address = ?`;
+      await executeQuery(updateQuery, [
+        tyrhObject.liquid,
+        tyrhObject.staking,
+        tyrhObject.address,
+      ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, address) VALUES(?, ?)`;
-      await executeQuery(createQuery, [value, address]);
+      const createQuery = `INSERT tyrh(liquid, staking, address) VALUES(?, ?, ?)`;
+      await executeQuery(createQuery, [
+        tyrhObject.liquid,
+        tyrhObject.staking,
+        tyrhObject.address,
+      ]);
     }
   } catch (err) {
     console.log(`ERROR: tyrhModel ~ ${err}`);
@@ -28,4 +43,4 @@ const addOrUpdateLiquid = async (address: string, value: number) => {
   }
 };
 
-export { addOrUpdateLiquid, existAddress };
+export { addOrUpdateTyrh, existAddress };
