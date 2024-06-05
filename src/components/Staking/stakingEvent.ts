@@ -10,6 +10,8 @@ import {
 } from "../BlockInfo/blockService";
 import config from "../../config";
 import { updateStakingLiquid } from "./stakingService";
+import { ethers } from "ethers";
+import { StakeInfo } from "./stakeInterface";
 
 const stakingJsonFile = "./src/abis/staking.json";
 const stakingAbi = JSON.parse(fs.readFileSync(stakingJsonFile, "utf-8"));
@@ -19,52 +21,21 @@ const stakingContract = new web3.eth.Contract(
   config.tyrhStakingAddress
 );
 
-const getPastEvents = async (from: number, to: number) => {
+const stakingEventStart = async () => {
   try {
-    const toBlock = Math.min(from + 9000, to);
-    const pastEvents = (await stakingContract.getPastEvents(
-      "UserStakingAmountChanged",
-      {
-        fromBlock: from,
-        toBlock,
+    for (let i = 0; i < 10000; i++) {
+      const stakeInfo: StakeInfo = await stakingContract.methods
+        .stakeList(i)
+        .call();
+      if ((stakeInfo.isFinished as boolean) === false) {
+        const value = Number(
+          ethers.formatEther(stakeInfo.amount.toString())
+        ).toFixed(6);
+        await updateStakingLiquid(stakeInfo.user, value, stakeInfo.id);
       }
-    )) as EventLog[];
-
-    await updateStakingLiquid(pastEvents);
-
-    await updateBlockInfoByName({
-      name: constant.BlockName.StakingBlock,
-      block: toBlock,
-    });
-
-    console.log(`update completed from ${from} to ${toBlock}`);
-
-    if (toBlock < to) {
-      await getPastEvents(from + 9001, to);
     }
   } catch (err) {
     console.log(err);
-  }
-};
-
-const stakingEventStart = async () => {
-  try {
-    const block: BlockInfo = await getBlockInfoByName({
-      name: constant.BlockName.StakingBlock,
-    });
-    const from = block.block;
-    const blockNumber = Number(await web3.eth.getBlockNumber());
-    const to = blockNumber;
-
-    if (from === to) {
-      console.log(colors.yellow(`No new block in staking event`));
-      return;
-    }
-
-    console.log(`staking event: getting event between: ${from + 1} and ${to}`);
-    await getPastEvents(from + 1, to);
-  } catch (err) {
-    console.log({ err });
   }
 };
 

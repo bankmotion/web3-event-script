@@ -1,9 +1,16 @@
 const constant = {
   BlockName: {
+    Initial: "initial",
     TyrhBlock: "tyrh",
-    StakingBlock: "staking",
   },
-  TyrhStart: 17677215,
+  LiquidEventType: {
+    Tyrh: 0,
+    Burn: 1,
+    Water: 2,
+    Plant: 3,
+    Seed: 4,
+    Holy: 5,
+  },
 };
 
 export default constant;
