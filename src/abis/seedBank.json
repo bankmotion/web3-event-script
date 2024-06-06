@@ -1,0 +1,417 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "plantAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "seedAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "nftAddress",
+                "type": "address"
+            }
+        ],
+        "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "NFTContract",
+        "outputs": [
+            {
+                "internalType": "contract ITYRHBoosterNFT",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "defaultSeedAmount",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "getUserStakingInfo",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "type": "uint256"
+                    },
+                    {
+                        "type": "uint256"
+                    },
+                    {
+                        "type": "uint256"
+                    },
+                    {
+                        "type": "uint256"
+                    },
+                    {
+                        "type": "uint256"
+                    },
+                    {
+                        "type": "uint256[]"
+                    },
+                    {
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct SeedBank.StakingInfo",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "harvest",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "initialTime",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "initialValue",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "minimumTime",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "nftType",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "plant",
+        "outputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "seed",
+        "outputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_initialValue",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_minimumTime",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_initialTime",
+                "type": "uint256"
+            }
+        ],
+        "name": "setInitialValues",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256[]",
+                "name": "typeIds",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "values",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "setSeedNFTTypes",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "plantAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "seedAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "nftAddress",
+                "type": "address"
+            }
+        ],
+        "name": "setTokenAddresses",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "nftIds",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "stake",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "userStakingInfo",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "seedAmount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "lifeCycle",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "startTimestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "lastClaimTimestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "isStaking",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "withdrawSeed",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "previousOwner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "seedAmount",
+                "type": "uint256"
+            }
+        ],
+        "name": "SeedHarvested",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "plantAmount",
+                "type": "uint256"
+            }
+        ],
+        "name": "Staked",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "StoppedStaking",
+        "type": "event"
+    }
+]

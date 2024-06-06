@@ -19,8 +19,14 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (!tyrhObject.liquid) {
       tyrhObject.liquid = 0;
     }
-    if (!tyrhObject.staking) {
-      tyrhObject.staking = 0;
+    if (!tyrhObject.stakedTyrh) {
+      tyrhObject.stakedTyrh = 0;
+    }
+    if (!tyrhObject.stakedBurn) {
+      tyrhObject.stakedBurn = 0;
+    }
+    if (!tyrhObject.stakedPlant) {
+      tyrhObject.stakedPlant = 0;
     }
     if (!tyrhObject.burn) {
       tyrhObject.burn = 0;
@@ -40,33 +46,39 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
-        staking = staking + ?, 
+        staked_tyrh = staked_tyrh + ?, 
         burn = burn + ?, 
         water = water + ?,
         plant = plant + ?,
         seed = seed + ?,
-        holy = holy + ?
+        holy = holy + ?,
+        staked_burn = staked_burn + ?,
+        staked_plant = staked_plant + ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,
-        tyrhObject.staking,
+        tyrhObject.stakedTyrh,
         tyrhObject.burn,
         tyrhObject.water,
         tyrhObject.plant,
         tyrhObject.seed,
         tyrhObject.holy,
+        tyrhObject.stakedBurn,
+        tyrhObject.stakedPlant,
         tyrhObject.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staking, burn, water, plant, seed, holy, address) VALUES(?, ?, ?, ?, ?, ? ,? ,?)`;
+      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, address) VALUES(?, ?, ?, ?, ?, ? ,? ,?, ?, ?)`;
       await executeQuery(createQuery, [
         tyrhObject.liquid,
-        tyrhObject.staking,
+        tyrhObject.stakedTyrh,
         tyrhObject.burn,
         tyrhObject.water,
         tyrhObject.plant,
         tyrhObject.seed,
         tyrhObject.holy,
+        tyrhObject.stakedBurn,
+        tyrhObject.stakedPlant,
         tyrhObject.address,
       ]);
     }
@@ -76,4 +88,15 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
   }
 };
 
-export { addOrUpdateTyrh, existAddress };
+const getAllAddress = async () => {
+  try {
+    const query = `SELECT * FROM tyrh order by address`;
+    const { rows } = await executeQuery(query, []);
+    return rows;
+  } catch (err) {
+    console.log(`ERROR: tyrhModel ~ ${err}`);
+    throw err;
+  }
+};
+
+export { addOrUpdateTyrh, existAddress, getAllAddress };

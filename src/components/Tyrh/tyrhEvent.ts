@@ -42,46 +42,47 @@ const getPastEvents = async (from: number, to: number) => {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
-    await updateTyrhLiquid(tyrhPastEvents, constant.LiquidEventType.Tyrh);
-    console.log(`tyrh liquid updated`);
 
     // burn liquid past event
     const burnPastEvents = (await burnContract.getPastEvents("Transfer", {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
-    await updateTyrhLiquid(burnPastEvents, constant.LiquidEventType.Burn);
-    console.log(`burn liquid updated`);
 
     // water liquid past event
     const waterPastEvents = (await waterContract.getPastEvents("Transfer", {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
-    await updateTyrhLiquid(waterPastEvents, constant.LiquidEventType.Water);
-    console.log(`water liquid updated`);
 
     // plant liquid past event
     const plantPastEvents = (await plantContract.getPastEvents("Transfer", {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
-    await updateTyrhLiquid(plantPastEvents, constant.LiquidEventType.Plant);
-    console.log(`plant liquid updated`);
 
     // seed liquid past event
     const seedPastEvents = (await seedContract.getPastEvents("Transfer", {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
-    await updateTyrhLiquid(seedPastEvents, constant.LiquidEventType.Seed);
-    console.log(`seed liquid updated`);
 
     // holy liquid past event
     const holyPastEvents = (await holyContract.getPastEvents("Transfer", {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
+
+    await updateTyrhLiquid(tyrhPastEvents, constant.LiquidEventType.Tyrh);
+    console.log(`tyrh liquid updated`);
+    await updateTyrhLiquid(burnPastEvents, constant.LiquidEventType.Burn);
+    console.log(`burn liquid updated`);
+    await updateTyrhLiquid(waterPastEvents, constant.LiquidEventType.Water);
+    console.log(`water liquid updated`);
+    await updateTyrhLiquid(plantPastEvents, constant.LiquidEventType.Plant);
+    console.log(`plant liquid updated`);
+    await updateTyrhLiquid(seedPastEvents, constant.LiquidEventType.Seed);
+    console.log(`seed liquid updated`);
     await updateTyrhLiquid(holyPastEvents, constant.LiquidEventType.Holy);
     console.log(`holy liquid updated`);
 

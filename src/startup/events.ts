@@ -3,7 +3,7 @@ import stakingEventStart from "../components/Staking/stakingEvent";
 
 const eventMonitorStart = () => {
   tyrhEventStart();
-  // stakingEventStart();
+  stakingEventStart();
 };
 
 export default eventMonitorStart;

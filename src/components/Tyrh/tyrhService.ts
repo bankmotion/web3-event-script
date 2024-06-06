@@ -6,7 +6,6 @@ import constant from "../../constant";
 
 const updateTyrhLiquid = async (pastEvents: EventLog[], eventType: number) => {
   for (const event of pastEvents) {
-    // console.log(event);
     const value = Number(
       parseFloat(
         ethers.formatEther(event.returnValues.value as string)
@@ -32,6 +31,7 @@ const updateTyrhLiquid = async (pastEvents: EventLog[], eventType: number) => {
     };
     await addOrUpdateTyrh(paramFrom);
     await addOrUpdateTyrh(paramTo);
+    console.log(event.blockNumber, event.address, eventType);
   }
 };
 

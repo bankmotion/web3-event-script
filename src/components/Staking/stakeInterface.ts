@@ -1,7 +1,19 @@
 export interface StakeInfo {
-  id: number;
-  user: string;
+  totalAmount: number;
+  stakeCount: number;
+}
+
+export interface BonfireUserInfo {
   amount: number;
   timestamp: number;
-  isFinished: boolean;
+}
+
+export interface SproutHouseStaking {
+  id: number;
+  owner: string;
+  amount: number;
+  yield: number;
+  timestamp: number;
+  nftId: number;
+  finished: boolean;
 }
