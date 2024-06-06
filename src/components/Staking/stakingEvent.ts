@@ -41,13 +41,13 @@ const stakingEventStart = async () => {
   try {
     const list: TyrhInterface[] = await getAllAddress();
     for (const item of list) {
-      // item.address = "0x605C8152D04fc6d5a41698B64B495aB4663F9FF1";
       const tyrhStakeInfo: StakeInfo = await tyrhStakingContract.methods
         .userStakingInfo(item.address)
         .call();
       const tyrhStakeAmount = Number(
         ethers.formatEther(tyrhStakeInfo.totalAmount.toString())
       );
+
       const bonfireUserInfo: BonfireUserInfo = await bonfireContract.methods
         .userInfo(item.address)
         .call();
@@ -55,9 +55,13 @@ const stakingEventStart = async () => {
         ethers.formatEther(bonfireUserInfo.amount.toString())
       );
 
-      const sproutHouseStakingList: any = await sproutHouseContract.methods
-        .getUserStakingList(item.address)
-        .call();
+      let sproutHouseStakingList: any = [];
+      if (item.address !== "0x605C8152D04fc6d5a41698B64B495aB4663F9FF1") {
+        sproutHouseStakingList = await sproutHouseContract.methods
+          .getUserStakingList(item.address)
+          .call();
+      }
+
       let sproutHouseAmount = 0;
       for (const item of sproutHouseStakingList) {
         if (item[constant.SproutHouseObjectId.Finished] === false) {
