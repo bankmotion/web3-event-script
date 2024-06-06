@@ -10,6 +10,7 @@ const config = {
   bonfireAddress: '0x9E716497d3491bc06Ab513aA65a91834C619620c',
   sproutHouseAddress: '0xe170Bb30a73ae95301fF9E5156aE3646B0bffB5a',
   seedbankAddress: '0x7746447FF448B31A8d7667f84F615C00F69A6352',
+  plantationAddress: '0x377c7957777C0bf5b7A69D32259cbC06D035B189',
 };
 
 export default config;

@@ -46,14 +46,14 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
-        staked_tyrh = staked_tyrh + ?, 
+        staked_tyrh = ?, 
         burn = burn + ?, 
         water = water + ?,
         plant = plant + ?,
         seed = seed + ?,
         holy = holy + ?,
-        staked_burn = staked_burn + ?,
-        staked_plant = staked_plant + ?
+        staked_burn = ?,
+        staked_plant = ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,

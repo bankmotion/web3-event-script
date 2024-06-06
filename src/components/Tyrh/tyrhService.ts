@@ -31,7 +31,7 @@ const updateTyrhLiquid = async (pastEvents: EventLog[], eventType: number) => {
     };
     await addOrUpdateTyrh(paramFrom);
     await addOrUpdateTyrh(paramTo);
-    console.log(event.blockNumber, event.address, eventType);
+    console.log(event.blockNumber, eventType);
   }
 };
 

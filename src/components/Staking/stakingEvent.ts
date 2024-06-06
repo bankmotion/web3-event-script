@@ -1,21 +1,11 @@
-import { Web3, EventLog } from "web3";
-import colors from "colors";
+import { Web3 } from "web3";
 import fs from "fs";
 
 import constant from "../../constant";
-import { BlockInfo } from "../BlockInfo/blockInterface";
-import {
-  getBlockInfoByName,
-  updateBlockInfoByName,
-} from "../BlockInfo/blockService";
 import config from "../../config";
 import { updateStakingLiquid } from "./stakingService";
 import { ethers } from "ethers";
-import {
-  BonfireUserInfo,
-  SproutHouseStaking,
-  StakeInfo,
-} from "./stakeInterface";
+import { BonfireUserInfo, StakeInfo } from "./stakeInterface";
 import { getAllAddress } from "../Tyrh/tyrhModel";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
 
@@ -51,13 +41,13 @@ const stakingEventStart = async () => {
   try {
     const list: TyrhInterface[] = await getAllAddress();
     for (const item of list) {
+      // item.address = "0x605C8152D04fc6d5a41698B64B495aB4663F9FF1";
       const tyrhStakeInfo: StakeInfo = await tyrhStakingContract.methods
         .userStakingInfo(item.address)
         .call();
       const tyrhStakeAmount = Number(
         ethers.formatEther(tyrhStakeInfo.totalAmount.toString())
       );
-
       const bonfireUserInfo: BonfireUserInfo = await bonfireContract.methods
         .userInfo(item.address)
         .call();
