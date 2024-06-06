@@ -64,20 +64,20 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
-        staked_tyrh = ?, 
+        staked_tyrh = staked_tyrh + ?, 
         burn = burn + ?, 
         water = water + ?,
         plant = plant + ?,
         seed = seed + ?,
         holy = holy + ?,
-        staked_burn = ?,
-        staked_plant = ?,
-        cattails = ?,
-        bush = ?,
-        tree = ?,
-        pine = ?,
-        palm = ?,
-        sherman = ?
+        staked_burn = staked_burn + ?,
+        staked_plant = staked_plant + ?,
+        cattails = cattails + ?,
+        bush = bush + ?,
+        tree = tree + ?,
+        pine = pine + ?,
+        palm = palm + ?,
+        sherman = sherman + ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,
@@ -135,4 +135,30 @@ const getAllAddress = async () => {
   }
 };
 
-export { addOrUpdateTyrh, existAddress, getAllAddress };
+const formatPlantation = async () => {
+  try {
+    const query = `UPDATE tyrh set cattails = 0, bush = 0, tree = 0, pine = 0, palm = 0, sherman = 0`;
+    await executeQuery(query, []);
+  } catch (err) {
+    console.log(`ERROR: tyrhModel ~ ${err}`);
+    throw err;
+  }
+};
+
+const formatStaking = async () => {
+  try {
+    const query = `UPDATE tyrh set liquid = 0, staked_burn = 0, staked_plant = 0`;
+    await executeQuery(query, []);
+  } catch (err) {
+    console.log(`ERROR: tyrhModel ~ ${err}`);
+    throw err;
+  }
+};
+
+export {
+  addOrUpdateTyrh,
+  existAddress,
+  getAllAddress,
+  formatPlantation,
+  formatStaking,
+};

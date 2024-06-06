@@ -6,7 +6,7 @@ import config from "../../config";
 import { updateStakingLiquid } from "./stakingService";
 import { ethers } from "ethers";
 import { BonfireUserInfo, StakeInfo } from "./stakeInterface";
-import { getAllAddress } from "../Tyrh/tyrhModel";
+import { formatStaking, getAllAddress } from "../Tyrh/tyrhModel";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
 
 const web3 = new Web3(config.rpcProvider);
@@ -39,6 +39,7 @@ const seedBankContract = new web3.eth.Contract(
 
 const stakingEventStart = async () => {
   try {
+    await formatStaking();
     const list: TyrhInterface[] = await getAllAddress();
     for (const item of list) {
       const tyrhStakeInfo: StakeInfo = await tyrhStakingContract.methods

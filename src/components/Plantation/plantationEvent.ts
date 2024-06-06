@@ -3,7 +3,7 @@ import fs from "fs";
 
 import constant from "../../constant";
 import config from "../../config";
-import { getAllAddress } from "../Tyrh/tyrhModel";
+import { formatPlantation, getAllAddress } from "../Tyrh/tyrhModel";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
 import { updatePlantation } from "./plantationService";
 
@@ -17,6 +17,7 @@ const plantationContract = new web3.eth.Contract(
 
 const plantationEventStart = async () => {
   try {
+    await formatPlantation();
     const list: TyrhInterface[] = await getAllAddress();
     for (const item of list) {
       const infos: any = await plantationContract.methods
