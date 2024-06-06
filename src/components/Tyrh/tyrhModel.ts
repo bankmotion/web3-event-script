@@ -43,6 +43,24 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (!tyrhObject.holy) {
       tyrhObject.holy = 0;
     }
+    if (!tyrhObject.cattails) {
+      tyrhObject.cattails = 0;
+    }
+    if (!tyrhObject.bush) {
+      tyrhObject.bush = 0;
+    }
+    if (!tyrhObject.tree) {
+      tyrhObject.tree = 0;
+    }
+    if (!tyrhObject.pine) {
+      tyrhObject.pine = 0;
+    }
+    if (!tyrhObject.palm) {
+      tyrhObject.palm = 0;
+    }
+    if (!tyrhObject.sherman) {
+      tyrhObject.sherman = 0;
+    }
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
@@ -53,7 +71,13 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         seed = seed + ?,
         holy = holy + ?,
         staked_burn = ?,
-        staked_plant = ?
+        staked_plant = ?,
+        cattails = ?,
+        bush = ?,
+        tree = ?,
+        pine = ?,
+        palm = ?,
+        sherman = ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,
@@ -65,10 +89,16 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.holy,
         tyrhObject.stakedBurn,
         tyrhObject.stakedPlant,
+        tyrhObject.cattails,
+        tyrhObject.bush,
+        tyrhObject.tree,
+        tyrhObject.pine,
+        tyrhObject.palm,
+        tyrhObject.sherman,
         tyrhObject.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, address) VALUES(?, ?, ?, ?, ?, ? ,? ,?, ?, ?)`;
+      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, address) VALUES(?, ?, ?, ?, ?, ? ,? ,?, ?, ?)`;
       await executeQuery(createQuery, [
         tyrhObject.liquid,
         tyrhObject.stakedTyrh,
@@ -79,6 +109,12 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.holy,
         tyrhObject.stakedBurn,
         tyrhObject.stakedPlant,
+        tyrhObject.cattails,
+        tyrhObject.bush,
+        tyrhObject.tree,
+        tyrhObject.pine,
+        tyrhObject.palm,
+        tyrhObject.sherman,
         tyrhObject.address,
       ]);
     }

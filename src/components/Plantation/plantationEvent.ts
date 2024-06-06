@@ -5,6 +5,7 @@ import constant from "../../constant";
 import config from "../../config";
 import { getAllAddress } from "../Tyrh/tyrhModel";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
+import { updatePlantation } from "./plantationService";
 
 const web3 = new Web3(config.rpcProvider);
 const plantationJsonFile = "./src/abis/plantation.json";
@@ -29,6 +30,8 @@ const plantationEventStart = async () => {
         }
       }
       console.log(`NFT: ${nft}, ${item.address}`);
+
+      await updatePlantation(nft, item.address);
     }
   } catch (err) {
     console.log(`plantationEventStart ~ ${err}`);

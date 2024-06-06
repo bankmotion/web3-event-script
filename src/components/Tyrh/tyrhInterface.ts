@@ -9,4 +9,10 @@ export interface TyrhInterface {
   stakedTyrh?: number;
   stakedBurn?: number;
   stakedPlant?: number;
+  cattails?: number;
+  bush?: number;
+  tree?: number;
+  pine?: number;
+  palm?: number;
+  sherman?: number;
 }

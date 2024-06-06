@@ -4,8 +4,8 @@ import plantationEventStart from "../components/Plantation/plantationEvent";
 
 const eventMonitorStart = () => {
   // tyrhEventStart();
-  stakingEventStart();
-  // plantationEventStart();
+  // stakingEventStart();
+  plantationEventStart();
 };
 
 export default eventMonitorStart;
