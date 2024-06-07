@@ -3,8 +3,8 @@ import stakingEventStart from "../components/Staking/stakingEvent";
 import plantationEventStart from "../components/Plantation/plantationEvent";
 
 const eventMonitorStart = () => {
-  // tyrhEventStart();
-  stakingEventStart();
+  tyrhEventStart();
+  // stakingEventStart();
   // plantationEventStart();
 };
 
