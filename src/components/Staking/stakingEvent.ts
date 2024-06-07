@@ -5,7 +5,11 @@ import constant from "../../constant";
 import config from "../../config";
 import { updateStakingLiquid } from "./stakingService";
 import { ethers } from "ethers";
-import { BonfireUserInfo, StakeInfo } from "./stakeInterface";
+import {
+  BonfireUserInfo,
+  SproutHouseStaking,
+  StakeInfo,
+} from "./stakeInterface";
 import { formatStaking, getAllAddress } from "../Tyrh/tyrhModel";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
 
@@ -56,24 +60,6 @@ const stakingEventStart = async () => {
         ethers.formatEther(bonfireUserInfo.amount.toString())
       );
 
-      let sproutHouseStakingList: any = [];
-      if (item.address !== "0x605C8152D04fc6d5a41698B64B495aB4663F9FF1") {
-        sproutHouseStakingList = await sproutHouseContract.methods
-          .getUserStakingList(item.address)
-          .call();
-      }
-
-      let sproutHouseAmount = 0;
-      for (const item of sproutHouseStakingList) {
-        if (item[constant.SproutHouseObjectId.Finished] === false) {
-          sproutHouseAmount += Number(
-            ethers.formatEther(
-              item[constant.SproutHouseObjectId.Amount].toString()
-            )
-          );
-        }
-      }
-
       let seedBankStakingInfo: any = await seedBankContract.methods
         .getUserStakingInfo(item.address)
         .call();
@@ -93,11 +79,30 @@ const stakingEventStart = async () => {
         address: item.address,
         stakedTyrh: Number(tyrhStakeAmount.toFixed(6)),
         stakedBurn: Number(bonfireAmount.toFixed(6)),
-        stakedPlant: Number(
-          (sproutHouseAmount + seedBankStakingAmount).toFixed(6)
-        ),
+        stakedPlant: Number(seedBankStakingAmount.toFixed(6)),
       };
-      await updateStakingLiquid(tyrhObject);
+    await updateStakingLiquid(tyrhObject);
+    }
+
+    // sprout house staking
+    const totCount: number = await sproutHouseContract.methods
+      .totalStakingCount()
+      .call();
+
+    for (let i = 0; i < totCount; i++) {
+      const info: SproutHouseStaking = await sproutHouseContract.methods
+        .stakings(i.toString())
+        .call();
+      console.log(info);
+
+      if (info.finished === false) {
+        const amount = Number(ethers.formatEther(info.amount.toString()));
+        const tyrhObject: TyrhInterface = {
+          address: info.owner,
+          stakedPlant: Number(amount.toFixed(6)),
+        };
+        await updateStakingLiquid(tyrhObject);
+      }
     }
   } catch (err) {
     console.log(err);
