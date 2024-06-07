@@ -147,7 +147,7 @@ const formatPlantation = async () => {
 
 const formatStaking = async () => {
   try {
-    const query = `UPDATE tyrh set liquid = 0, staked_burn = 0, staked_plant = 0`;
+    const query = `UPDATE tyrh set staked_tyrh = 0, staked_burn = 0, staked_plant = 0`;
     await executeQuery(query, []);
   } catch (err) {
     console.log(`ERROR: tyrhModel ~ ${err}`);
