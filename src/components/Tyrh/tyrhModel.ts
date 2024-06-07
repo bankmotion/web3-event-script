@@ -61,6 +61,27 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (!tyrhObject.sherman) {
       tyrhObject.sherman = 0;
     }
+    if (!tyrhObject.yieldBoosters) {
+      tyrhObject.yieldBoosters = 0;
+    }
+    if (!tyrhObject.reduceTime) {
+      tyrhObject.reduceTime = 0;
+    }
+    if (!tyrhObject.lessWater) {
+      tyrhObject.lessWater = 0;
+    }
+    if (!tyrhObject.treatment) {
+      tyrhObject.treatment = 0;
+    }
+    if (!tyrhObject.rhWakllet) {
+      tyrhObject.rhWakllet = 0;
+    }
+    if (!tyrhObject.leagueBoosters) {
+      tyrhObject.leagueBoosters = 0;
+    }
+    if (!tyrhObject.claimBoosters) {
+      tyrhObject.claimBoosters = 0;
+    }
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
