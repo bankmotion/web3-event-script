@@ -19,7 +19,7 @@ export interface TyrhInterface {
   reduceTime?: number;
   lessWater?: number;
   treatment?: number;
-  rhWakllet: number;
+  rhWakllet?: number;
   leagueBoosters?: number;
   claimBoosters?: number;
 }

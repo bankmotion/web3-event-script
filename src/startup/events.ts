@@ -4,10 +4,10 @@ import plantationEventStart from "../components/Plantation/plantationEvent";
 import nftEventStart from "../components/Nft/nftEvent";
 
 const eventMonitorStart = async () => {
-  // await tyrhEventStart();
+  await tyrhEventStart();
   // await stakingEventStart();
   // await plantationEventStart();
-  await nftEventStart();
+  // await nftEventStart();
 
   console.log(`Event end`);
 };
