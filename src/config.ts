@@ -1,7 +1,7 @@
 const config = {
   rpcProvider: "https://rpc.pulsechain.com",
   tyrhAddress: "0xc91562626B9a697af683555dA9946986278Ac9a5",
-  tyrhStakingAddress: "0x42bEe0615d10a7c6F0a49115AD8fCA72413e0B33",
+  tyrhStakingAddress: "0x7E77CdC1c4EB667cDB1c2a2dE16368207A52b167",
   burnAddress: "0xe20CCe146Eb2223B486C99B1d4a1a4200AeCD979",
   waterAddress: "0xDFfBC11B0C5190c56956e299fd69d6d9b5dc9EF6",
   plantAddress: "0xD2320E58C9Fbc9c90Adcac7d6c27D7321aF6Fef5",
