@@ -77,7 +77,14 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tree = tree + ?,
         pine = pine + ?,
         palm = palm + ?,
-        sherman = sherman + ?
+        sherman = sherman + ?,
+        yield_boosters = yield_boosters + ?,
+        reduce_time = reduce_time + ?,
+        less_water = less_water + ?,
+        treatment = treatment + ?,
+        rh_wakllet = rh_wakllet + ?,
+        league_boosters = league_boosters + ?,
+        claim_boosters = claim_boosters + ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,
@@ -95,10 +102,17 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.pine,
         tyrhObject.palm,
         tyrhObject.sherman,
+        tyrhObject.yieldBoosters,
+        tyrhObject.reduceTime,
+        tyrhObject.lessWater,
+        tyrhObject.treatment,
+        tyrhObject.rhWakllet,
+        tyrhObject.leagueBoosters,
+        tyrhObject.claimBoosters,
         tyrhObject.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, yield_boosters, reduce_time, less_water, treatment, rh_wakllet, league_boosters, claim_boosters, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       await executeQuery(createQuery, [
         tyrhObject.liquid,
         tyrhObject.stakedTyrh,
@@ -115,6 +129,13 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.pine,
         tyrhObject.palm,
         tyrhObject.sherman,
+        tyrhObject.yieldBoosters,
+        tyrhObject.reduceTime,
+        tyrhObject.lessWater,
+        tyrhObject.treatment,
+        tyrhObject.rhWakllet,
+        tyrhObject.leagueBoosters,
+        tyrhObject.claimBoosters,
         tyrhObject.address,
       ]);
     }
@@ -155,10 +176,20 @@ const formatStaking = async () => {
   }
 };
 
+const formatNft = async () => {
+  try {
+    const query = `UPDATE tyrh SET yield_boosters = 0, reduce_time = 0, less_water = 0, treatment = 0, rh_wakllet = 0, league_boosters = 0, claim_boosters = 0`;
+    await executeQuery(query, []);
+  } catch (err) {
+    console.log(`ERROR: tyrhModel ~ ${err}`);
+  }
+};
+
 export {
   addOrUpdateTyrh,
   existAddress,
   getAllAddress,
   formatPlantation,
   formatStaking,
+  formatNft,
 };

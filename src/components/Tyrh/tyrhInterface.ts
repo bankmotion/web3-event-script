@@ -15,4 +15,11 @@ export interface TyrhInterface {
   pine?: number;
   palm?: number;
   sherman?: number;
+  yieldBoosters?: number;
+  reduceTime?: number;
+  lessWater?: number;
+  treatment?: number;
+  rhWakllet: number;
+  leagueBoosters?: number;
+  claimBoosters?: number;
 }

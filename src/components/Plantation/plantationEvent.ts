@@ -30,7 +30,7 @@ const plantationEventStart = async () => {
           nft[info[constant.PlantationTreeObjectId.TypeId]]++;
         }
       }
-      console.log(`NFT: ${nft}, ${item.address}`);
+      console.log(`plantation: ${nft}, ${item.address}`);
 
       await updatePlantation(nft, item.address);
     }

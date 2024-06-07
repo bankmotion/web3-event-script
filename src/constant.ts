@@ -49,7 +49,26 @@ const constant = {
     Pine: 3,
     Plam: 4,
     Sherman: 5,
-  }
+  },
+  NftId: {
+    TypeId: 0,
+    TokenId: 1,
+    Weight: 2,
+    Owner: 3,
+  },
+  NftType: {
+    YieldBoosters: 0,
+    ReduceTime: 1,
+    LessWater: 2,
+    Treatment: 3,
+    RhWakllet: 4,
+    LeagueBoosters: 5,
+    ClaimBoosters: 6,
+  },
+  NftTypeIndex: [
+    6, 6, 6, 6, 4, 4, 4, 4, 5, 5, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3,
+    3, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  ],
 };
 
 export default constant;
