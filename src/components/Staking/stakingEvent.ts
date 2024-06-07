@@ -93,7 +93,6 @@ const stakingEventStart = async () => {
       const info: SproutHouseStaking = await sproutHouseContract.methods
         .stakings(i.toString())
         .call();
-      console.log(info);
 
       if (info.finished === false) {
         const amount = Number(ethers.formatEther(info.amount.toString()));

@@ -98,7 +98,7 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, address) VALUES(?, ?, ?, ?, ?, ? ,? ,?, ?, ?)`;
+      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       await executeQuery(createQuery, [
         tyrhObject.liquid,
         tyrhObject.stakedTyrh,
