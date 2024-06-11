@@ -82,6 +82,9 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (!tyrhObject.claimBoosters) {
       tyrhObject.claimBoosters = 0;
     }
+    if (!tyrhObject.ogNft) {
+      tyrhObject.ogNft = 0;
+    }
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
@@ -105,7 +108,8 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         treatment = treatment + ?,
         rh_wakllet = rh_wakllet + ?,
         league_boosters = league_boosters + ?,
-        claim_boosters = claim_boosters + ?
+        claim_boosters = claim_boosters + ?,
+        og_nft = og_nft + ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,
@@ -130,10 +134,11 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.rhWakllet,
         tyrhObject.leagueBoosters,
         tyrhObject.claimBoosters,
+        tyrhObject.ogNft,
         tyrhObject.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, yield_boosters, reduce_time, less_water, treatment, rh_wakllet, league_boosters, claim_boosters, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, yield_boosters, reduce_time, less_water, treatment, rh_wakllet, league_boosters, claim_boosters, ognft, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       await executeQuery(createQuery, [
         tyrhObject.liquid,
         tyrhObject.stakedTyrh,
@@ -157,6 +162,7 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.rhWakllet,
         tyrhObject.leagueBoosters,
         tyrhObject.claimBoosters,
+        tyrhObject.ogNft,
         tyrhObject.address,
       ]);
     }

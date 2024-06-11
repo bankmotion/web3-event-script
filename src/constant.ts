@@ -69,6 +69,17 @@ const constant = {
     6, 6, 6, 6, 4, 4, 4, 4, 5, 5, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3,
     3, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
   ],
+
+  PointsWeight: {
+    Tyrh: 5,
+    StakedTyrh: 8,
+    LiquidBurn: 1,
+    LiquidWater: 1,
+    LiquidPlant: 1,
+    StakedBurn: 0.2,
+    StakedPlant: 5,
+    StakedWater: 5,
+  },
 };
 
 export default constant;

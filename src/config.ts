@@ -12,6 +12,7 @@ const config = {
   seedbankAddress: "0x7746447FF448B31A8d7667f84F615C00F69A6352",
   plantationAddress: "0x377c7957777C0bf5b7A69D32259cbC06D035B189",
   nftAddress: "0x2400A72f441afb2BF06445d62f97eF6Df57176dE",
+  ogNftAddress: "0xa05513dd537b6dCf747e61B5be5C35d59F58B991",
 };
 
 export default config;

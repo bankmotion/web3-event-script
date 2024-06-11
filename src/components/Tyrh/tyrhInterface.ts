@@ -22,4 +22,5 @@ export interface TyrhInterface {
   rhWakllet?: number;
   leagueBoosters?: number;
   claimBoosters?: number;
+  ogNft?: number;
 }
