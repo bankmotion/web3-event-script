@@ -8,11 +8,11 @@ import {calculatePoints} from "../components/Reward/rewardService";
 
 const eventMonitorStart = async () => {
   // await tyrhEventStart();
-  // await stakingEventStart();
+  await stakingEventStart();
   // await plantationEventStart();
   // await nftEventStart();
   // await writeXlsx();
-  await calculatePoints();
+  // await calculatePoints();
 
   console.log(`Event end`);
 };

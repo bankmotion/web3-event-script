@@ -13,6 +13,8 @@ const config = {
   plantationAddress: "0x377c7957777C0bf5b7A69D32259cbC06D035B189",
   nftAddress: "0x2400A72f441afb2BF06445d62f97eF6Df57176dE",
   ogNftAddress: "0xa05513dd537b6dCf747e61B5be5C35d59F58B991",
+  reservoirAddress: "0x5298f837a56190FB9d0515eb0F87140875748Ef2",
+  lourdesAddress: "0xF4A8e9359189D20a902290Ad10e09e7ffCdF364D",
 };
 
 export default config;

@@ -41,6 +41,20 @@ const seedBankContract = new web3.eth.Contract(
   config.seedbankAddress
 );
 
+const lourdesJsonFile = "./src/abis/lourdes.json";
+const lourdesAbi = JSON.parse(fs.readFileSync(lourdesJsonFile, "utf-8"));
+const lourdesContract = new web3.eth.Contract(
+  lourdesAbi,
+  config.lourdesAddress
+);
+
+const reservoirJsonFile = "./src/abis/reservoir.json";
+const reservoirAbi = JSON.parse(fs.readFileSync(reservoirJsonFile, "utf-8"));
+const reservoirContract = new web3.eth.Contract(
+  reservoirAbi,
+  config.reservoirAddress
+);
+
 const stakingEventStart = async () => {
   try {
     await formatStaking();
@@ -75,13 +89,35 @@ const stakingEventStart = async () => {
           )
         : 0;
 
+      let lourdesStakingInfo: any = await lourdesContract.methods
+        .getUserStakingList(item.address)
+        .call();
+      let lourdesStakingAmount = 0;
+      for (const lourdesItem of lourdesStakingInfo) {
+        if (lourdesItem["8"] === false && lourdesItem["9"] === false) {
+          lourdesStakingAmount += Number(
+            ethers.formatEther(lourdesItem["3"].toString())
+          );
+        }
+      }
+
+      let reservoirStakingInfo: any = await reservoirContract.methods
+        .userInfo(item.address)
+        .call();
+      const reservoirStakingAmount = reservoirStakingInfo.isStaking
+        ? Number(ethers.formatEther(reservoirStakingInfo.amount.toString()))
+        : 0;
+
       const tyrhObject: TyrhInterface = {
         address: item.address,
         stakedTyrh: Number(tyrhStakeAmount.toFixed(6)),
         stakedBurn: Number(bonfireAmount.toFixed(6)),
         stakedPlant: Number(seedBankStakingAmount.toFixed(6)),
+        stakedWater: Number(
+          (lourdesStakingAmount + reservoirStakingAmount).toFixed(6)
+        ),
       };
-    await updateStakingLiquid(tyrhObject);
+      await updateStakingLiquid(tyrhObject);
     }
 
     // sprout house staking

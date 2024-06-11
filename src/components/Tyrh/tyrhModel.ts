@@ -28,6 +28,9 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (!tyrhObject.stakedPlant) {
       tyrhObject.stakedPlant = 0;
     }
+    if (!tyrhObject.stakedWater) {
+      tyrhObject.stakedWater = 0;
+    }
     if (!tyrhObject.burn) {
       tyrhObject.burn = 0;
     }
@@ -82,9 +85,6 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
     if (!tyrhObject.claimBoosters) {
       tyrhObject.claimBoosters = 0;
     }
-    if (!tyrhObject.ogNft) {
-      tyrhObject.ogNft = 0;
-    }
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
@@ -96,6 +96,7 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         holy = holy + ?,
         staked_burn = staked_burn + ?,
         staked_plant = staked_plant + ?,
+        staked_water = staked_water + ?,
         cattails = cattails + ?,
         bush = bush + ?,
         tree = tree + ?,
@@ -108,8 +109,7 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         treatment = treatment + ?,
         rh_wakllet = rh_wakllet + ?,
         league_boosters = league_boosters + ?,
-        claim_boosters = claim_boosters + ?,
-        og_nft = og_nft + ?
+        claim_boosters = claim_boosters + ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
         tyrhObject.liquid,
@@ -121,6 +121,7 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.holy,
         tyrhObject.stakedBurn,
         tyrhObject.stakedPlant,
+        tyrhObject.stakedWater,
         tyrhObject.cattails,
         tyrhObject.bush,
         tyrhObject.tree,
@@ -134,11 +135,10 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.rhWakllet,
         tyrhObject.leagueBoosters,
         tyrhObject.claimBoosters,
-        tyrhObject.ogNft,
         tyrhObject.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, cattails, bush, tree, pine, palm, sherman, yield_boosters, reduce_time, less_water, treatment, rh_wakllet, league_boosters, claim_boosters, ognft, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, staked_water, cattails, bush, tree, pine, palm, sherman, yield_boosters, reduce_time, less_water, treatment, rh_wakllet, league_boosters, claim_boosters, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       await executeQuery(createQuery, [
         tyrhObject.liquid,
         tyrhObject.stakedTyrh,
@@ -149,6 +149,7 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.holy,
         tyrhObject.stakedBurn,
         tyrhObject.stakedPlant,
+        tyrhObject.stakedWater,
         tyrhObject.cattails,
         tyrhObject.bush,
         tyrhObject.tree,
@@ -162,7 +163,6 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         tyrhObject.rhWakllet,
         tyrhObject.leagueBoosters,
         tyrhObject.claimBoosters,
-        tyrhObject.ogNft,
         tyrhObject.address,
       ]);
     }
@@ -180,29 +180,29 @@ const getAllAddress = async () => {
     for (const item of rows) {
       result.push({
         address: item["address"],
-        liquid: item['liquid'],
-        burn: item['burn'],
-        water: item['water'],
-        plant: item['plant'],
-        seed: item['seed'],
-        holy: item['holy'],
-        stakedTyrh: item['staked_tyrh'],
-        stakedBurn: item['staked_burn'],
-        stakedPlant: item['staked_plant'],
-        stakedWater: item['staked_water'],
-        cattails: item['cattails'],
-        bush: item['bush'],
-        tree: item['tree'],
-        pine: item['pine'],
-        palm: item['palm'],
-        sherman: item['sherman'],
-        yieldBoosters: item['yield_boosters'],
-        reduceTime: item['reduce_time'],
-        lessWater: item['less_water'],
-        treatment: item['treatment'],
-        rhWakllet: item['rh_wakllet'],
-        leagueBoosters: item['league_boosters'],
-        claimBoosters: item['claim_boosters'],
+        liquid: item["liquid"],
+        burn: item["burn"],
+        water: item["water"],
+        plant: item["plant"],
+        seed: item["seed"],
+        holy: item["holy"],
+        stakedTyrh: item["staked_tyrh"],
+        stakedBurn: item["staked_burn"],
+        stakedPlant: item["staked_plant"],
+        stakedWater: item["staked_water"],
+        cattails: item["cattails"],
+        bush: item["bush"],
+        tree: item["tree"],
+        pine: item["pine"],
+        palm: item["palm"],
+        sherman: item["sherman"],
+        yieldBoosters: item["yield_boosters"],
+        reduceTime: item["reduce_time"],
+        lessWater: item["less_water"],
+        treatment: item["treatment"],
+        rhWakllet: item["rh_wakllet"],
+        leagueBoosters: item["league_boosters"],
+        claimBoosters: item["claim_boosters"],
       });
     }
     return result;
