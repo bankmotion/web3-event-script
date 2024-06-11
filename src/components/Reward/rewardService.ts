@@ -14,7 +14,8 @@ const calculatePoints = async () => {
       (wallet.water ?? 0) * constant.PointsWeight.LiquidWater +
       (wallet.plant ?? 0) * constant.PointsWeight.LiquidPlant +
       (wallet.stakedBurn ?? 0) * constant.PointsWeight.StakedBurn +
-      (wallet.stakedPlant ?? 0) * constant.PointsWeight.StakedPlant;
+      (wallet.stakedPlant ?? 0) * constant.PointsWeight.StakedPlant +
+      (wallet.stakedWater ?? 0) * constant.PointsWeight.StakedWater;
     data.push([wallet.address, point]);
   }
   const wb = Xlsx.utils.book_new();
