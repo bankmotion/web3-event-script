@@ -7,8 +7,8 @@ import ogNftEventStart from "../components/OgNft/ogNftEvent";
 import {calculatePoints} from "../components/Reward/rewardService";
 
 const eventMonitorStart = async () => {
-  // await tyrhEventStart();
-  await stakingEventStart();
+  await tyrhEventStart();
+  // await stakingEventStart();
   // await plantationEventStart();
   // await nftEventStart();
   // await writeXlsx();
