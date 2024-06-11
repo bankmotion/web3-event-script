@@ -176,7 +176,36 @@ const getAllAddress = async () => {
   try {
     const query = `SELECT * FROM tyrh order by address`;
     const { rows } = await executeQuery(query, []);
-    return rows;
+    const result: TyrhInterface[] = [];
+    for (const item of rows) {
+      result.push({
+        address: item["address"],
+        liquid: item['liquid'],
+        burn: item['burn'],
+        water: item['water'],
+        plant: item['plant'],
+        seed: item['seed'],
+        holy: item['holy'],
+        stakedTyrh: item['staked_tyrh'],
+        stakedBurn: item['staked_burn'],
+        stakedPlant: item['staked_plant'],
+        stakedWater: item['staked_water'],
+        cattails: item['cattails'],
+        bush: item['bush'],
+        tree: item['tree'],
+        pine: item['pine'],
+        palm: item['palm'],
+        sherman: item['sherman'],
+        yieldBoosters: item['yield_boosters'],
+        reduceTime: item['reduce_time'],
+        lessWater: item['less_water'],
+        treatment: item['treatment'],
+        rhWakllet: item['rh_wakllet'],
+        leagueBoosters: item['league_boosters'],
+        claimBoosters: item['claim_boosters'],
+      });
+    }
+    return result;
   } catch (err) {
     console.log(`ERROR: tyrhModel ~ ${err}`);
     throw err;
@@ -195,7 +224,7 @@ const formatPlantation = async () => {
 
 const formatStaking = async () => {
   try {
-    const query = `UPDATE tyrh set staked_tyrh = 0, staked_burn = 0, staked_plant = 0`;
+    const query = `UPDATE tyrh set staked_tyrh = 0, staked_burn = 0, staked_plant = 0, staked_water = 0`;
     await executeQuery(query, []);
   } catch (err) {
     console.log(`ERROR: tyrhModel ~ ${err}`);
