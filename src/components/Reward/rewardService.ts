@@ -7,7 +7,7 @@ const calculatePoints = async () => {
   const wallets: TyrhInterface[] = await getAllAddress();
   const data: any = [["address", "point", "mafia"]];
   let totalPoint = 0;
-  const mafiaSupply = 750000000;
+  const mafiaSupply = 700000000;
   for (const wallet of wallets) {
     const point =
       (wallet.liquid ?? 0) * constant.PointsWeight.Tyrh +
