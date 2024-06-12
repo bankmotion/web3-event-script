@@ -5,7 +5,9 @@ import constant from "../../constant";
 
 const calculatePoints = async () => {
   const wallets: TyrhInterface[] = await getAllAddress();
-  const data: any = [["address", "point"]];
+  const data: any = [["address", "point", "mafia"]];
+  let totalPoint = 0;
+  const mafiaSupply = 750000000;
   for (const wallet of wallets) {
     const point =
       (wallet.liquid ?? 0) * constant.PointsWeight.Tyrh +
@@ -83,7 +85,14 @@ const calculatePoints = async () => {
       (wallet.claimBoostersRandom ?? 0) *
         constant.PointsWeight.ClaimBoostersRandom +
       (wallet.waterFountain ?? 0) * constant.PointsWeight.WaterFountain;
-    data.push([wallet.address, point]);
+
+    totalPoint += point;
+    data.push([wallet.address, point, 0]);
+  }
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][1] > 0) {
+      data[i][2] = (data[i][1] / totalPoint) * mafiaSupply;
+    }
   }
   const wb = Xlsx.utils.book_new();
   const ws = Xlsx.utils.aoa_to_sheet(data);
