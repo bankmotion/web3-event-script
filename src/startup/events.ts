@@ -13,8 +13,8 @@ const eventMonitorStart = async () => {
   // await plantationEventStart();
   // await nftEventStart();
   // await writeXlsx();
-  await deleteUnnecessaryAddresses();
-  // await calculatePoints();
+  // await deleteUnnecessaryAddresses();
+  await calculatePoints();
 
   console.log(`Event end`);
 };

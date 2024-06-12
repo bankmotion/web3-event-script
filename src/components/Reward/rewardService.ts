@@ -89,23 +89,26 @@ const calculatePoints = async () => {
     totalPoint += point;
     data.push([wallet.address, point, 0]);
   }
+  let newData = [];
   for (let i = 0; i < data.length; i++) {
     if (data[i][1] > 0) {
       data[i][2] = (data[i][1] / totalPoint) * mafiaSupply;
     }
+    if (data[i][2] >= 1) {
+      newData.push(data[i]);
+    }
   }
   const wb = Xlsx.utils.book_new();
-  const ws = Xlsx.utils.aoa_to_sheet(data);
+  const ws = Xlsx.utils.aoa_to_sheet(newData);
   Xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
   Xlsx.writeFile(wb, "index.xlsx");
 };
 
-const deleteUnnecessaryAddresses = async() => {
+const deleteUnnecessaryAddresses = async () => {
   const data = constant.UnnecessaryAddress;
-  for(const item of data) {
+  for (const item of data) {
     await deleteUnnecessaryAddress(item);
   }
-  
-}
+};
 
 export { calculatePoints, deleteUnnecessaryAddresses };
