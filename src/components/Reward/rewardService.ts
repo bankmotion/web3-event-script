@@ -15,7 +15,74 @@ const calculatePoints = async () => {
       (wallet.plant ?? 0) * constant.PointsWeight.LiquidPlant +
       (wallet.stakedBurn ?? 0) * constant.PointsWeight.StakedBurn +
       (wallet.stakedPlant ?? 0) * constant.PointsWeight.StakedPlant +
-      (wallet.stakedWater ?? 0) * constant.PointsWeight.StakedWater;
+      (wallet.stakedWater ?? 0) * constant.PointsWeight.StakedWater +
+      (wallet.seed ?? 0) * constant.PointsWeight.LiquidSeed +
+      (wallet.holy ?? 0) * constant.PointsWeight.LiquidHoly +
+      (wallet.cattails ?? 0) * constant.PointsWeight.Cattails +
+      (wallet.bush ?? 0) * constant.PointsWeight.Bush +
+      (wallet.tree ?? 0) * constant.PointsWeight.Tree +
+      (wallet.pine ?? 0) * constant.PointsWeight.Pine +
+      (wallet.palm ?? 0) * constant.PointsWeight.Palm +
+      (wallet.sherman ?? 0) * constant.PointsWeight.Sherman +
+      (wallet.yieldBoosters5 ?? 0) * constant.PointsWeight.YieldBoosters5 +
+      (wallet.yieldBoosters15 ?? 0) * constant.PointsWeight.YieldBoosters15 +
+      (wallet.yieldBoosters30 ?? 0) * constant.PointsWeight.YieldBoosters30 +
+      (wallet.yieldBoosters50 ?? 0) * constant.PointsWeight.YieldBoosters50 +
+      (wallet.yieldBoostersRandom ?? 0) *
+        constant.PointsWeight.YieldBoostersRandom +
+      (wallet.seedYieldBoosters10 ?? 0) *
+        constant.PointsWeight.SeedYieldBoosters10 +
+      (wallet.seedYieldBoosters25 ?? 0) *
+        constant.PointsWeight.SeedYieldBoosters25 +
+      (wallet.seedYieldBoosters50 ?? 0) *
+        constant.PointsWeight.SeedYieldBoosters50 +
+      (wallet.seedYieldBoosters100 ?? 0) *
+        constant.PointsWeight.SeedYieldBoosters100 +
+      (wallet.sproutYieldBoosters5 ?? 0) *
+        constant.PointsWeight.SproutYieldBoosters5 +
+      (wallet.sproutYieldBoosters10 ?? 0) *
+        constant.PointsWeight.SproutYieldBoosters10 +
+      (wallet.sproutYieldBoosters15 ?? 0) *
+        constant.PointsWeight.SproutYieldBoosters15 +
+      (wallet.sproutYieldBoostersRandom ?? 0) *
+        constant.PointsWeight.SproutYieldBoostersRandom +
+      (wallet.holyYieldBoosters10 ?? 0) *
+        constant.PointsWeight.HolyYieldBoosters10 +
+      (wallet.holyYieldBoosters25 ?? 0) *
+        constant.PointsWeight.HolyYieldBoosters25 +
+      (wallet.holyYieldBoosters50 ?? 0) *
+        constant.PointsWeight.HolyYieldBoosters50 +
+      (wallet.holyYieldBoosters100 ?? 0) *
+        constant.PointsWeight.HolyYieldBoosters100 +
+      (wallet.reduceTreeTime25 ?? 0) * constant.PointsWeight.ReduceTreeTime25 +
+      (wallet.reduceTreeTime50 ?? 0) * constant.PointsWeight.ReduceTreeTime50 +
+      (wallet.reduceTreeTime75 ?? 0) * constant.PointsWeight.ReduceTreeTime75 +
+      (wallet.reduceTreeTimeRandom ?? 0) *
+        constant.PointsWeight.ReduceTreeTimeRandom +
+      (wallet.reduceSeedTime10 ?? 0) * constant.PointsWeight.ReduceSeedTime10 +
+      (wallet.reduceSeedTime25 ?? 0) * constant.PointsWeight.ReduceSeedTime25 +
+      (wallet.reduceSeedTime50 ?? 0) * constant.PointsWeight.ReduceSeedTime50 +
+      (wallet.lessWater10 ?? 0) * constant.PointsWeight.LessWater10 +
+      (wallet.lessWater25 ?? 0) * constant.PointsWeight.LessWater25 +
+      (wallet.lessWater50 ?? 0) * constant.PointsWeight.LessWater50 +
+      (wallet.lessWaterRandom ?? 0) * constant.PointsWeight.LessWaterRandom +
+      (wallet.treatment10 ?? 0) * constant.PointsWeight.Treatment10 +
+      (wallet.treatment25 ?? 0) * constant.PointsWeight.Treatment25 +
+      (wallet.treatment50 ?? 0) * constant.PointsWeight.Treatment50 +
+      (wallet.specialsRhWallet ?? 0) * constant.PointsWeight.SpecialsRhWakllet +
+      (wallet.specialsLiquidKing ?? 0) *
+        constant.PointsWeight.SpecialsLiquidKing +
+      (wallet.specialsMystery ?? 0) * constant.PointsWeight.SpecialsMystery +
+      (wallet.specialsRandom ?? 0) * constant.PointsWeight.SpecialsRandom +
+      (wallet.leagueBoosters ?? 0) * constant.PointsWeight.LeagueBoosters +
+      (wallet.leagueBoostersRandom ?? 0) *
+        constant.PointsWeight.LeagueBoostersRandom +
+      (wallet.claimBoosters5 ?? 0) * constant.PointsWeight.ClaimBoosters5 +
+      (wallet.claimBoosters10 ?? 0) * constant.PointsWeight.ClaimBoosters10 +
+      (wallet.claimBoosters15 ?? 0) * constant.PointsWeight.ClaimBoosters15 +
+      (wallet.claimBoostersRandom ?? 0) *
+        constant.PointsWeight.ClaimBoostersRandom +
+      (wallet.waterFountain ?? 0) * constant.PointsWeight.WaterFountain;
     data.push([wallet.address, point]);
   }
   const wb = Xlsx.utils.book_new();

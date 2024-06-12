@@ -10,9 +10,9 @@ const eventMonitorStart = async () => {
   // await tyrhEventStart();
   // await stakingEventStart();
   // await plantationEventStart();
-  await nftEventStart();
+  // await nftEventStart();
   // await writeXlsx();
-  // await calculatePoints();
+  await calculatePoints();
 
   console.log(`Event end`);
 };

@@ -354,7 +354,7 @@ const getAllAddress = async () => {
         pine: item["pine"],
         palm: item["palm"],
         sherman: item["sherman"],
-        yieldBoosters5: item["yield_boosters"],
+        yieldBoosters5: item["yield_boosters_5"],
         yieldBoosters15: item["yield_boosters_15"],
         yieldBoosters30: item["yield_boosters_30"],
         yieldBoosters50: item["yield_boosters_50"],
