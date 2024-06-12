@@ -25,8 +25,7 @@ const nftEventStart = async () => {
       }
 
       for (const item of result) {
-        const nftType =
-          constant.NftTypeIndex[item[constant.NftId.TypeId] as number];
+        const nftType = Number(item[constant.NftId.TypeId]);
         const address = item[constant.NftId.Owner] as string;
         if (nftType) {
           await updateNft(address, nftType);

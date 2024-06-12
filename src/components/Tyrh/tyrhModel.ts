@@ -16,75 +16,68 @@ const existAddress = async (address: string) => {
 const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
   try {
     const exist = await existAddress(tyrhObject.address);
-    if (!tyrhObject.liquid) {
-      tyrhObject.liquid = 0;
-    }
-    if (!tyrhObject.stakedTyrh) {
-      tyrhObject.stakedTyrh = 0;
-    }
-    if (!tyrhObject.stakedBurn) {
-      tyrhObject.stakedBurn = 0;
-    }
-    if (!tyrhObject.stakedPlant) {
-      tyrhObject.stakedPlant = 0;
-    }
-    if (!tyrhObject.stakedWater) {
-      tyrhObject.stakedWater = 0;
-    }
-    if (!tyrhObject.burn) {
-      tyrhObject.burn = 0;
-    }
-    if (!tyrhObject.water) {
-      tyrhObject.water = 0;
-    }
-    if (!tyrhObject.plant) {
-      tyrhObject.plant = 0;
-    }
-    if (!tyrhObject.seed) {
-      tyrhObject.seed = 0;
-    }
-    if (!tyrhObject.holy) {
-      tyrhObject.holy = 0;
-    }
-    if (!tyrhObject.cattails) {
-      tyrhObject.cattails = 0;
-    }
-    if (!tyrhObject.bush) {
-      tyrhObject.bush = 0;
-    }
-    if (!tyrhObject.tree) {
-      tyrhObject.tree = 0;
-    }
-    if (!tyrhObject.pine) {
-      tyrhObject.pine = 0;
-    }
-    if (!tyrhObject.palm) {
-      tyrhObject.palm = 0;
-    }
-    if (!tyrhObject.sherman) {
-      tyrhObject.sherman = 0;
-    }
-    if (!tyrhObject.yieldBoosters) {
-      tyrhObject.yieldBoosters = 0;
-    }
-    if (!tyrhObject.reduceTime) {
-      tyrhObject.reduceTime = 0;
-    }
-    if (!tyrhObject.lessWater) {
-      tyrhObject.lessWater = 0;
-    }
-    if (!tyrhObject.treatment) {
-      tyrhObject.treatment = 0;
-    }
-    if (!tyrhObject.rhWakllet) {
-      tyrhObject.rhWakllet = 0;
-    }
-    if (!tyrhObject.leagueBoosters) {
-      tyrhObject.leagueBoosters = 0;
-    }
-    if (!tyrhObject.claimBoosters) {
-      tyrhObject.claimBoosters = 0;
-    }
+    let obj: TyrhInterface = {
+      address: "",
+      liquid: 0,
+      burn: 0,
+      water: 0,
+      plant: 0,
+      seed: 0,
+      holy: 0,
+      stakedTyrh: 0,
+      stakedBurn: 0,
+      stakedPlant: 0,
+      stakedWater: 0,
+      cattails: 0,
+      bush: 0,
+      tree: 0,
+      pine: 0,
+      palm: 0,
+      sherman: 0,
+      yieldBoosters5: 0,
+      yieldBoosters15: 0,
+      yieldBoosters30: 0,
+      yieldBoosters50: 0,
+      yieldBoostersRandom: 0,
+      seedYieldBoosters10: 0,
+      seedYieldBoosters25: 0,
+      seedYieldBoosters50: 0,
+      seedYieldBoosters100: 0,
+      sproutYieldBoosters5: 0,
+      sproutYieldBoosters10: 0,
+      sproutYieldBoosters15: 0,
+      sproutYieldBoostersRandom: 0,
+      holyYieldBoosters10: 0,
+      holyYieldBoosters25: 0,
+      holyYieldBoosters50: 0,
+      holyYieldBoosters100: 0,
+      reduceTreeTime25: 0,
+      reduceTreeTime50: 0,
+      reduceTreeTime75: 0,
+      reduceTreeTimeRandom: 0,
+      reduceSeedTime10: 0,
+      reduceSeedTime25: 0,
+      reduceSeedTime50: 0,
+      lessWater10: 0,
+      lessWater25: 0,
+      lessWater50: 0,
+      lessWaterRandom: 0,
+      treatment10: 0,
+      treatment25: 0,
+      treatment50: 0,
+      specialsRhWallet: 0,
+      specialsLiquidKing: 0,
+      specialsMystery: 0,
+      specialsRandom: 0,
+      leagueBoosters: 0,
+      leagueBoostersRandom: 0,
+      claimBoosters5: 0,
+      claimBoosters10: 0,
+      claimBoosters15: 0,
+      claimBoostersRandom: 0,
+      waterFountain: 0,
+    };
+    obj = { ...obj, ...tyrhObject };
     if (exist) {
       const updateQuery = `UPDATE tyrh SET 
         liquid = liquid + ?, 
@@ -103,67 +96,232 @@ const addOrUpdateTyrh = async (tyrhObject: TyrhInterface) => {
         pine = pine + ?,
         palm = palm + ?,
         sherman = sherman + ?,
-        yield_boosters = yield_boosters + ?,
-        reduce_time = reduce_time + ?,
-        less_water = less_water + ?,
-        treatment = treatment + ?,
-        rh_wakllet = rh_wakllet + ?,
+        yield_boosters_5 = yield_boosters_5 + ?,
+        yield_boosters_15 = yield_boosters_15 + ?,
+        yield_boosters_30 = yield_boosters_30 + ?,
+        yield_boosters_50 = yield_boosters_50 + ?,
+        yield_boosters_random = yield_boosters_random + ?,
+        seed_yield_boosters_10 = seed_yield_boosters_10 + ?,
+        seed_yield_boosters_25 = seed_yield_boosters_25 + ?,
+        seed_yield_boosters_50 = seed_yield_boosters_50 + ?,
+        seed_yield_boosters_100 = seed_yield_boosters_100 + ?,
+        sprout_yield_boosters_5 = sprout_yield_boosters_5 + ?,
+        sprout_yield_boosters_10 = sprout_yield_boosters_10 + ?,
+        sprout_yield_boosters_15 = sprout_yield_boosters_15 + ?,
+        sprout_yield_boosters_random = sprout_yield_boosters_random + ?,
+        holy_yield_boosters_10 = holy_yield_boosters_10 + ?,
+        holy_yield_boosters_25 = holy_yield_boosters_25 + ?,
+        holy_yield_boosters_50 = holy_yield_boosters_50 + ?,
+        holy_yield_boosters_100 = holy_yield_boosters_100 + ?,
+        reduce_tree_time_25 = reduce_tree_time_25 + ?,
+        reduce_tree_time_50 = reduce_tree_time_50 + ?,
+        reduce_tree_time_75 = reduce_tree_time_75 + ?,
+        reduce_tree_time_random = reduce_tree_time_random + ?,
+        reduce_seed_time_10 = reduce_seed_time_10 + ?,
+        reduce_seed_time_25 = reduce_seed_time_25 + ?,
+        reduce_seed_time_50 = reduce_seed_time_50 + ?,
+        less_water_10 = less_water_10 + ?,
+        less_water_25 = less_water_25 + ?,
+        less_water_50 = less_water_50 + ?,
+        less_water_random = less_water_random + ?,
+        treatment_10 = treatment_10 + ?,
+        treatment_25 = treatment_25 + ?,
+        treatment_50 = treatment_50 + ?,
+        specials_rhwallet = specials_rhwallet + ?,
+        specials_liquidking = specials_liquidking + ?,
+        specials_mystery = specials_mystery + ?,
+        specials_random = specials_random + ?,
         league_boosters = league_boosters + ?,
-        claim_boosters = claim_boosters + ?
+        league_boosters_random = league_boosters_random + ?,
+        claim_boosters_5 = claim_boosters_5 + ?,
+        claim_boosters_10 = claim_boosters_10 + ?,
+        claim_boosters_15 = claim_boosters_15 + ?,
+        claim_boosters_random = claim_boosters_random + ?,
+        water_fountain = water_fountain + ?
         WHERE address = ?`;
       await executeQuery(updateQuery, [
-        tyrhObject.liquid,
-        tyrhObject.stakedTyrh,
-        tyrhObject.burn,
-        tyrhObject.water,
-        tyrhObject.plant,
-        tyrhObject.seed,
-        tyrhObject.holy,
-        tyrhObject.stakedBurn,
-        tyrhObject.stakedPlant,
-        tyrhObject.stakedWater,
-        tyrhObject.cattails,
-        tyrhObject.bush,
-        tyrhObject.tree,
-        tyrhObject.pine,
-        tyrhObject.palm,
-        tyrhObject.sherman,
-        tyrhObject.yieldBoosters,
-        tyrhObject.reduceTime,
-        tyrhObject.lessWater,
-        tyrhObject.treatment,
-        tyrhObject.rhWakllet,
-        tyrhObject.leagueBoosters,
-        tyrhObject.claimBoosters,
-        tyrhObject.address,
+        obj.liquid,
+        obj.stakedTyrh,
+        obj.burn,
+        obj.water,
+        obj.plant,
+        obj.seed,
+        obj.holy,
+        obj.stakedBurn,
+        obj.stakedPlant,
+        obj.stakedWater,
+        obj.cattails,
+        obj.bush,
+        obj.tree,
+        obj.pine,
+        obj.palm,
+        obj.sherman,
+        obj.yieldBoosters5,
+        obj.yieldBoosters15,
+        obj.yieldBoosters30,
+        obj.yieldBoosters50,
+        obj.yieldBoostersRandom,
+        obj.seedYieldBoosters10,
+        obj.seedYieldBoosters25,
+        obj.seedYieldBoosters50,
+        obj.seedYieldBoosters100,
+        obj.sproutYieldBoosters5,
+        obj.sproutYieldBoosters10,
+        obj.sproutYieldBoosters15,
+        obj.sproutYieldBoostersRandom,
+        obj.holyYieldBoosters10,
+        obj.holyYieldBoosters25,
+        obj.holyYieldBoosters50,
+        obj.holyYieldBoosters100,
+        obj.reduceTreeTime25,
+        obj.reduceTreeTime50,
+        obj.reduceTreeTime75,
+        obj.reduceTreeTimeRandom,
+        obj.reduceSeedTime10,
+        obj.reduceSeedTime25,
+        obj.reduceSeedTime50,
+        obj.lessWater10,
+        obj.lessWater25,
+        obj.lessWater50,
+        obj.lessWaterRandom,
+        obj.treatment10,
+        obj.treatment25,
+        obj.treatment50,
+        obj.specialsRhWallet,
+        obj.specialsLiquidKing,
+        obj.specialsMystery,
+        obj.specialsRandom,
+        obj.leagueBoosters,
+        obj.leagueBoostersRandom,
+        obj.claimBoosters5,
+        obj.claimBoosters10,
+        obj.claimBoosters15,
+        obj.claimBoostersRandom,
+        obj.waterFountain,
+        obj.address,
       ]);
     } else {
-      const createQuery = `INSERT tyrh(liquid, staked_tyrh, burn, water, plant, seed, holy, staked_burn, staked_plant, staked_water, cattails, bush, tree, pine, palm, sherman, yield_boosters, reduce_time, less_water, treatment, rh_wakllet, league_boosters, claim_boosters, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      const createQuery = `INSERT tyrh(
+        liquid, 
+        staked_tyrh, 
+        burn, 
+        water, 
+        plant, 
+        seed, 
+        holy, 
+        staked_burn, 
+        staked_plant, 
+        staked_water, 
+        cattails, 
+        bush, 
+        tree, 
+        pine, 
+        palm, 
+        sherman, 
+        yield_boosters_5,
+        yield_boosters_15,
+        yield_boosters_30,
+        yield_boosters_50,
+        yield_boosters_random,
+        seed_yield_boosters_10,
+        seed_yield_boosters_25,
+        seed_yield_boosters_50,
+        seed_yield_boosters_100,
+        sprout_yield_boosters_5,
+        sprout_yield_boosters_10,
+        sprout_yield_boosters_15,
+        sprout_yield_boosters_random,
+        holy_yield_boosters_10,
+        holy_yield_boosters_25,
+        holy_yield_boosters_50,
+        holy_yield_boosters_100,
+        reduce_tree_time_25,
+        reduce_tree_time_50,
+        reduce_tree_time_75,
+        reduce_tree_time_random,
+        reduce_seed_time_10,
+        reduce_seed_time_25,
+        reduce_seed_time_50,
+        less_water_10,
+        less_water_25,
+        less_water_50,
+        less_water_random,
+        treatment_10,
+        treatment_25,
+        treatment_50,
+        specials_rhwallet,
+        specials_liquidking,
+        specials_mystery,
+        specials_random,
+        league_boosters,
+        league_boosters_random,
+        claim_boosters_5,
+        claim_boosters_10,
+        claim_boosters_15,
+        claim_boosters_random,
+        water_fountain,
+        address
+      ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       await executeQuery(createQuery, [
-        tyrhObject.liquid,
-        tyrhObject.stakedTyrh,
-        tyrhObject.burn,
-        tyrhObject.water,
-        tyrhObject.plant,
-        tyrhObject.seed,
-        tyrhObject.holy,
-        tyrhObject.stakedBurn,
-        tyrhObject.stakedPlant,
-        tyrhObject.stakedWater,
-        tyrhObject.cattails,
-        tyrhObject.bush,
-        tyrhObject.tree,
-        tyrhObject.pine,
-        tyrhObject.palm,
-        tyrhObject.sherman,
-        tyrhObject.yieldBoosters,
-        tyrhObject.reduceTime,
-        tyrhObject.lessWater,
-        tyrhObject.treatment,
-        tyrhObject.rhWakllet,
-        tyrhObject.leagueBoosters,
-        tyrhObject.claimBoosters,
-        tyrhObject.address,
+        obj.liquid,
+        obj.stakedTyrh,
+        obj.burn,
+        obj.water,
+        obj.plant,
+        obj.seed,
+        obj.holy,
+        obj.stakedBurn,
+        obj.stakedPlant,
+        obj.stakedWater,
+        obj.cattails,
+        obj.bush,
+        obj.tree,
+        obj.pine,
+        obj.palm,
+        obj.sherman,
+        obj.yieldBoosters5,
+        obj.yieldBoosters15,
+        obj.yieldBoosters30,
+        obj.yieldBoosters50,
+        obj.yieldBoostersRandom,
+        obj.seedYieldBoosters10,
+        obj.seedYieldBoosters25,
+        obj.seedYieldBoosters50,
+        obj.seedYieldBoosters100,
+        obj.sproutYieldBoosters5,
+        obj.sproutYieldBoosters10,
+        obj.sproutYieldBoosters15,
+        obj.sproutYieldBoostersRandom,
+        obj.holyYieldBoosters10,
+        obj.holyYieldBoosters25,
+        obj.holyYieldBoosters50,
+        obj.holyYieldBoosters100,
+        obj.reduceTreeTime25,
+        obj.reduceTreeTime50,
+        obj.reduceTreeTime75,
+        obj.reduceTreeTimeRandom,
+        obj.reduceSeedTime10,
+        obj.reduceSeedTime25,
+        obj.reduceSeedTime50,
+        obj.lessWater10,
+        obj.lessWater25,
+        obj.lessWater50,
+        obj.lessWaterRandom,
+        obj.treatment10,
+        obj.treatment25,
+        obj.treatment50,
+        obj.specialsRhWallet,
+        obj.specialsLiquidKing,
+        obj.specialsMystery,
+        obj.specialsRandom,
+        obj.leagueBoosters,
+        obj.leagueBoostersRandom,
+        obj.claimBoosters5,
+        obj.claimBoosters10,
+        obj.claimBoosters15,
+        obj.claimBoostersRandom,
+        obj.waterFountain,
+        obj.address,
       ]);
     }
   } catch (err) {
@@ -196,13 +354,48 @@ const getAllAddress = async () => {
         pine: item["pine"],
         palm: item["palm"],
         sherman: item["sherman"],
-        yieldBoosters: item["yield_boosters"],
-        reduceTime: item["reduce_time"],
-        lessWater: item["less_water"],
-        treatment: item["treatment"],
-        rhWakllet: item["rh_wakllet"],
+        yieldBoosters5: item["yield_boosters"],
+        yieldBoosters15: item["yield_boosters_15"],
+        yieldBoosters30: item["yield_boosters_30"],
+        yieldBoosters50: item["yield_boosters_50"],
+        yieldBoostersRandom: item["yield_boosters_random"],
+        seedYieldBoosters10: item["seed_yield_boosters_10"],
+        seedYieldBoosters25: item["seed_yield_boosters_25"],
+        seedYieldBoosters50: item["seed_yield_boosters_50"],
+        seedYieldBoosters100: item["seed_yield_boosters_100"],
+        sproutYieldBoosters5: item["sprout_yield_boosters_5"],
+        sproutYieldBoosters10: item["sprout_yield_boosters_10"],
+        sproutYieldBoosters15: item["sprout_yield_boosters_15"],
+        sproutYieldBoostersRandom: item["sprout_yield_boosters_random"],
+        holyYieldBoosters10: item["holy_yield_boosters_10"],
+        holyYieldBoosters25: item["holy_yield_boosters_25"],
+        holyYieldBoosters50: item["holy_yield_boosters_50"],
+        holyYieldBoosters100: item["holy_yield_boosters_100"],
+        reduceTreeTime25: item["reduce_tree_time_25"],
+        reduceTreeTime50: item["reduce_tree_time_50"],
+        reduceTreeTime75: item["reduce_tree_time_75"],
+        reduceTreeTimeRandom: item["reduce_tree_time_random"],
+        reduceSeedTime10: item["reduce_seed_time_10"],
+        reduceSeedTime25: item["reduce_seed_time_25"],
+        reduceSeedTime50: item["reduce_seed_time_50"],
+        lessWater10: item["less_water_10"],
+        lessWater25: item["less_water_25"],
+        lessWater50: item["less_water_50"],
+        lessWaterRandom: item["less_water_random"],
+        treatment10: item["treatment_10"],
+        treatment25: item["treatment_25"],
+        treatment50: item["treatment_50"],
+        specialsRhWallet: item["specials_rhwallet"],
+        specialsLiquidKing: item["specials_liquidking"],
+        specialsMystery: item["specials_mystery"],
+        specialsRandom: item["specials_random"],
         leagueBoosters: item["league_boosters"],
-        claimBoosters: item["claim_boosters"],
+        leagueBoostersRandom: item["league_boosters_random"],
+        claimBoosters5: item["claim_boosters_5"],
+        claimBoosters10: item["claim_boosters_10"],
+        claimBoosters15: item["claim_boosters_15"],
+        claimBoostersRandom: item["claim_boosters_random"],
+        waterFountain: item["water_fountain"],
       });
     }
     return result;
@@ -234,7 +427,50 @@ const formatStaking = async () => {
 
 const formatNft = async () => {
   try {
-    const query = `UPDATE tyrh SET yield_boosters = 0, reduce_time = 0, less_water = 0, treatment = 0, rh_wakllet = 0, league_boosters = 0, claim_boosters = 0`;
+    const query = `UPDATE tyrh SET 
+      yield_boosters_5 = 0, 
+      yield_boosters_15 = 0,
+      yield_boosters_30 = 0,
+      yield_boosters_50 = 0,
+      yield_boosters_random = 0,
+      seed_yield_boosters_10 = 0,
+      seed_yield_boosters_25 = 0,
+      seed_yield_boosters_50 = 0,
+      seed_yield_boosters_100 = 0,
+      sprout_yield_boosters_5 = 0,
+      sprout_yield_boosters_10 = 0,
+      sprout_yield_boosters_15 = 0,
+      sprout_yield_boosters_random = 0,
+      holy_yield_boosters_10 = 0,
+      holy_yield_boosters_25 = 0,
+      holy_yield_boosters_50 = 0,
+      holy_yield_boosters_100 = 0,
+      reduce_tree_time_25 = 0,
+      reduce_tree_time_50 = 0,
+      reduce_tree_time_75 = 0,
+      reduce_tree_time_random = 0,
+      reduce_seed_time_10 = 0,
+      reduce_seed_time_25 = 0,
+      reduce_seed_time_50 = 0,
+      less_water_10 = 0,
+      less_water_25 = 0,
+      less_water_50 = 0,
+      less_water_random = 0,
+      treatment_10 = 0,
+      treatment_25 = 0,
+      treatment_50 = 0,
+      specials_rhwallet = 0,
+      specials_liquidking = 0,
+      specials_mystery = 0,
+      specials_random = 0,
+      league_boosters = 0,
+      league_boosters_random = 0,
+      claim_boosters_5 = 0,
+      claim_boosters_10 = 0,
+      claim_boosters_15 = 0,
+      claim_boosters_random = 0,
+      water_fountain = 0
+    `;
     await executeQuery(query, []);
   } catch (err) {
     console.log(`ERROR: tyrhModel ~ ${err}`);
