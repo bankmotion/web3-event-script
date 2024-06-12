@@ -1,6 +1,6 @@
 import * as Xlsx from "xlsx";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
-import { getAllAddress } from "../Tyrh/tyrhModel";
+import { getAllAddress, deleteUnnecessaryAddress } from "../Tyrh/tyrhModel";
 import constant from "../../constant";
 
 const calculatePoints = async () => {
@@ -100,4 +100,12 @@ const calculatePoints = async () => {
   Xlsx.writeFile(wb, "index.xlsx");
 };
 
-export { calculatePoints };
+const deleteUnnecessaryAddresses = async() => {
+  const data = constant.UnnecessaryAddress;
+  for(const item of data) {
+    await deleteUnnecessaryAddress(item);
+  }
+  
+}
+
+export { calculatePoints, deleteUnnecessaryAddresses };

@@ -477,6 +477,11 @@ const formatNft = async () => {
   }
 };
 
+const deleteUnnecessaryAddress = async (address: string) => {
+  const query = `DELETE from tyrh where address = ?`;
+  await executeQuery(query, [address]);
+};
+
 export {
   addOrUpdateTyrh,
   existAddress,
@@ -484,4 +489,5 @@ export {
   formatPlantation,
   formatStaking,
   formatNft,
+  deleteUnnecessaryAddress,
 };

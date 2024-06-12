@@ -4,7 +4,8 @@ import plantationEventStart from "../components/Plantation/plantationEvent";
 import nftEventStart from "../components/Nft/nftEvent";
 import { writeXlsx } from "../components/Xlsx/xlsxService";
 import ogNftEventStart from "../components/OgNft/ogNftEvent";
-import {calculatePoints} from "../components/Reward/rewardService";
+import {calculatePoints, deleteUnnecessaryAddresses} from "../components/Reward/rewardService";
+
 
 const eventMonitorStart = async () => {
   // await tyrhEventStart();
@@ -12,7 +13,8 @@ const eventMonitorStart = async () => {
   // await plantationEventStart();
   // await nftEventStart();
   // await writeXlsx();
-  await calculatePoints();
+  await deleteUnnecessaryAddresses();
+  // await calculatePoints();
 
   console.log(`Event end`);
 };
