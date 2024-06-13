@@ -101,7 +101,7 @@ const calculatePoints = async () => {
   const wb = Xlsx.utils.book_new();
   const ws = Xlsx.utils.aoa_to_sheet(newData);
   Xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
-  Xlsx.writeFile(wb, "index.xlsx");
+  Xlsx.writeFile(wb, "points_airdrop.xlsx");
 };
 
 const deleteUnnecessaryAddresses = async () => {

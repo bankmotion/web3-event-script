@@ -9,7 +9,7 @@ const writeXlsx = async () => {
   const workSheet = Xlsx.utils.json_to_sheet(results);
   const workbook = Xlsx.utils.book_new();
   Xlsx.utils.book_append_sheet(workbook, workSheet, "Sheet1");
-  Xlsx.writeFile(workbook, "output.xlsx");
+  Xlsx.writeFile(workbook, "tyrh_total_liquid.xlsx");
   console.log(`Excel file written successfully`);
 };
 

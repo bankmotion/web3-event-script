@@ -16,6 +16,8 @@ const eventMonitorStart = async () => {
   // await deleteUnnecessaryAddresses();
   await calculatePoints();
 
+  // await ogNftEventStart();
+
   console.log(`Event end`);
 };
 

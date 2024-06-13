@@ -193,6 +193,8 @@ const constant = {
     "0x3E889ddd43F2Bb896249C84D3167097566B3E5a8",
     "0x9293281b2805F986731d0dDeab56ddFfC7A1B3D9",
   ],
+
+  OgNftFomular: [1, 3, 5, 8, 15],
 };
 
 export default constant;
