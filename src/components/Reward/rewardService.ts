@@ -1,13 +1,63 @@
 import * as Xlsx from "xlsx";
 import { TyrhInterface } from "../Tyrh/tyrhInterface";
+import * as fs from "fs";
+
 import { getAllAddress, deleteUnnecessaryAddress } from "../Tyrh/tyrhModel";
 import constant from "../../constant";
+import { sacificeData } from "./sacrificeData";
+import { pusdData } from "./pusdData";
+
+const readSacificeFile = async () => {
+  const fileContent = fs.readFileSync("src/data/PLSP Sacrifice set.xlsx");
+  const workbook = Xlsx.read(fileContent, { type: "buffer" });
+  const sheetName = workbook.SheetNames[0];
+  const worksheet = workbook.Sheets[sheetName];
+
+  const excelData: Array<Array<any>> = Xlsx.utils.sheet_to_json(worksheet, {
+    header: 1,
+  });
+  const jsonData = JSON.stringify(excelData, null, 2);
+  fs.writeFileSync("sacifice.json", jsonData);
+  console.log(excelData);
+};
+
+const readPusdFile = async () => {
+  const fileContent = fs.readFileSync("src/data/pusd-sac.xlsx");
+  const workbook = Xlsx.read(fileContent, { type: "buffer" });
+  const sheetName = workbook.SheetNames[0];
+  const worksheet = workbook.Sheets[sheetName];
+
+  const excelData: Array<Array<any>> = Xlsx.utils.sheet_to_json(worksheet, {
+    header: 1,
+  });
+  const jsonData = JSON.stringify(excelData, null, 2);
+  fs.writeFileSync("pusd.json", jsonData);
+  console.log(excelData);
+};
 
 const calculatePoints = async () => {
+  // await readSacificeFile();
+  // return;
+  // await readPusdFile();
+  // return;
   const wallets: TyrhInterface[] = await getAllAddress();
   const data: any = [["address", "point", "mafia"]];
   let totalPoint = 0;
-  const mafiaSupply = 700000000;
+  const mafiaAirdrop = {
+    point: 700000000,
+    sacrifice: 50000000,
+    pusd: 50000000,
+  };
+  const resultObj: {
+    [address: string]: {
+      point: number;
+      mafiaForPoint: number;
+      sacrifice: number;
+      mafiaForSacrifice: number;
+      pusd: number;
+      mafiaPusd: number;
+    };
+  } = {};
   for (const wallet of wallets) {
     const point =
       (wallet.liquid ?? 0) * constant.PointsWeight.Tyrh +
@@ -89,17 +139,91 @@ const calculatePoints = async () => {
     totalPoint += point;
     data.push([wallet.address, point, 0]);
   }
-  let newData = [];
+
   for (let i = 0; i < data.length; i++) {
     if (data[i][1] > 0) {
-      data[i][2] = (data[i][1] / totalPoint) * mafiaSupply;
+      data[i][2] = (data[i][1] / totalPoint) * mafiaAirdrop.point;
     }
     if (data[i][2] >= 1) {
-      newData.push(data[i]);
+      const address = data[i][0];
+      if (!resultObj[address]) {
+        resultObj[address] = {
+          point: 0,
+          mafiaForPoint: 0,
+          sacrifice: 0,
+          mafiaForSacrifice: 0,
+          pusd: 0,
+          mafiaPusd: 0,
+        };
+      }
+      resultObj[address].point = data[i][1];
+      resultObj[address].mafiaForPoint = data[i][2];
     }
   }
+
+  sacificeData.forEach((data) => {
+    const address = data[1] as string;
+    const totalPlsp = Number(data[4]);
+    const mafia = (totalPlsp / 1000000) * mafiaAirdrop.sacrifice;
+    if (!resultObj[address]) {
+      resultObj[address] = {
+        point: 0,
+        mafiaForPoint: 0,
+        sacrifice: 0,
+        mafiaForSacrifice: 0,
+        pusd: 0,
+        mafiaPusd: 0,
+      };
+    }
+    resultObj[address].sacrifice = totalPlsp;
+    resultObj[address].mafiaForSacrifice = mafia;
+  });
+
+  pusdData.forEach((data) => {
+    const address= data[0] as string;
+    const pusd = Number(data[1])
+    const mafia = (pusd / 435394.4) * mafiaAirdrop.pusd;
+    if (!resultObj[address]) {
+      resultObj[address] = {
+        point: 0,
+        mafiaForPoint: 0,
+        sacrifice: 0,
+        mafiaForSacrifice: 0,
+        pusd: 0,
+        mafiaPusd: 0,
+      };
+    }
+    resultObj[address].pusd = pusd;
+    resultObj[address].mafiaPusd = mafia;
+  })
+
+  const addresses = Object.keys(resultObj);
+  const resultArr: any = [
+    [
+      "address",
+      "points",
+      "mafia for points",
+      "sacrifice",
+      "mafia for sacrifice",
+      "pusd",
+      "mafia for pusd",
+    ],
+  ];
+  addresses.forEach((address) => {
+    const obj = resultObj[address];
+    resultArr.push([
+      address,
+      obj.point,
+      obj.mafiaForPoint,
+      obj.sacrifice,
+      obj.mafiaForSacrifice,
+      obj.pusd,
+      obj.mafiaPusd,
+    ]);
+  });
+
   const wb = Xlsx.utils.book_new();
-  const ws = Xlsx.utils.aoa_to_sheet(newData);
+  const ws = Xlsx.utils.aoa_to_sheet(resultArr);
   Xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
   Xlsx.writeFile(wb, "points_airdrop.xlsx");
 };
