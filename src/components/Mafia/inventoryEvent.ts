@@ -16,7 +16,6 @@ const inventoryContract = new web3.eth.Contract(
 const getPastEvents = async (from: number, to: number) => {
   try {
     const toBlock = Math.min(from + 9000, to);
-
     console.log(`inventory past event started from ${from} to ${toBlock}`);
 
     const generateEvents = (await inventoryContract.getPastEvents(
@@ -82,6 +81,7 @@ const getPastEvents = async (from: number, to: number) => {
     }
   } catch (err) {
     console.log({ err });
+    await getPastEvents(from, to);
   }
 };
 
