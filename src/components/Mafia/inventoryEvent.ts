@@ -26,6 +26,8 @@ const getPastEvents = async (from: number, to: number) => {
       }
     )) as EventLog[];
 
+    console.log(`${generateEvents.length} generate event`);
+
     for (const event of generateEvents) {
       const owner = event.returnValues.owner;
       const itemId = event.returnValues.itemId;
@@ -37,7 +39,6 @@ const getPastEvents = async (from: number, to: number) => {
       }
     }
 
-    // burn liquid past event
     const transferEvents = (await inventoryContract.getPastEvents(
       "ItemTransferred",
       {
@@ -45,6 +46,8 @@ const getPastEvents = async (from: number, to: number) => {
         toBlock,
       }
     )) as EventLog[];
+
+    console.log(`${transferEvents.length} transfer events`);
 
     for (const event of transferEvents) {
       const from = event.returnValues.from;
@@ -63,6 +66,8 @@ const getPastEvents = async (from: number, to: number) => {
       fromBlock: from,
       toBlock,
     })) as EventLog[];
+
+    console.log(`${removeEvents.length} remove events`);
 
     for (const event of removeEvents) {
       const itemId = event.returnValues.itemId;
