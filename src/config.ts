@@ -1,5 +1,6 @@
 const config = {
   rpcProvider: "https://rpc.pulsechain.com",
+  g4RpcProvider: "https://rpc-pulsechain.g4mm4.io",
   tyrhAddress: "0xc91562626B9a697af683555dA9946986278Ac9a5",
   tyrhStakingAddress: "0x7E77CdC1c4EB667cDB1c2a2dE16368207A52b167",
   burnAddress: "0xe20CCe146Eb2223B486C99B1d4a1a4200AeCD979",

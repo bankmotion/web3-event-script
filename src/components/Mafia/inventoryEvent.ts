@@ -2,17 +2,11 @@ import { EventLog, Web3 } from "web3";
 import colors from "colors";
 import fs from "fs";
 
-import constant from "../../constant";
-import {
-  getBlockInfoByName,
-  updateBlockInfoByName,
-} from "../BlockInfo/blockService";
 import config from "../../config";
-import { BlockInfo } from "../BlockInfo/blockInterface";
 const invevntoryJsonFile = "./src/abis/mafiaInventory.json";
 const inventoryAbi = JSON.parse(fs.readFileSync(invevntoryJsonFile, "utf-8"));
 
-const web3 = new Web3(config.rpcProvider);
+const web3 = new Web3(config.g4RpcProvider);
 const inventoryContractAddr = "0x2c60de22Ec20CcE72245311579c4aD9e5394Adc4";
 const inventoryContract = new web3.eth.Contract(
   inventoryAbi,
