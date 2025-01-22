@@ -22,7 +22,7 @@ const readSacificeFile = async () => {
 };
 
 const readPusdFile = async () => {
-  const fileContent = fs.readFileSync("src/data/pusd-sac.xlsx");
+  const fileContent = fs.readFileSync("ognft-convert.xlsx");
   const workbook = Xlsx.read(fileContent, { type: "buffer" });
   const sheetName = workbook.SheetNames[0];
   const worksheet = workbook.Sheets[sheetName];
@@ -38,8 +38,8 @@ const readPusdFile = async () => {
 const calculatePoints = async () => {
   // await readSacificeFile();
   // return;
-  // await readPusdFile();
-  // return;
+  await readPusdFile();
+  return;
   const wallets: TyrhInterface[] = await getAllAddress();
   const data: any = [["address", "point", "mafia"]];
   let totalPoint = 0;

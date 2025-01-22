@@ -1,0 +1,1171 @@
+[
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "version",
+              "type": "uint8"
+          }
+      ],
+      "name": "Initialized",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "categoryId",
+              "type": "uint256"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "typeId",
+              "type": "uint256"
+          }
+      ],
+      "name": "ItemGenerated",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "ItemRemoved",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "ItemTransferred",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+          },
+          {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+          }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "categoryId",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "typeId",
+              "type": "uint256"
+          }
+      ],
+      "name": "addItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "components": [
+                  {
+                      "components": [
+                          {
+                              "internalType": "uint256",
+                              "name": "stock",
+                              "type": "uint256"
+                          },
+                          {
+                              "internalType": "uint256",
+                              "name": "chance",
+                              "type": "uint256"
+                          }
+                      ],
+                      "internalType": "struct MafiaInventory.Type[]",
+                      "name": "types",
+                      "type": "tuple[]"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "typesCount",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "totalStock",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "chance",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "bool",
+                      "name": "hasLimit",
+                      "type": "bool"
+                  }
+              ],
+              "internalType": "struct MafiaInventory.Category[]",
+              "name": "list",
+              "type": "tuple[]"
+          },
+          {
+              "internalType": "bool",
+              "name": "isAirdrop",
+              "type": "bool"
+          }
+      ],
+      "name": "addItemCategories",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+          },
+          {
+              "internalType": "uint8",
+              "name": "cityId",
+              "type": "uint8"
+          },
+          {
+              "internalType": "uint8",
+              "name": "x",
+              "type": "uint8"
+          },
+          {
+              "internalType": "uint8",
+              "name": "y",
+              "type": "uint8"
+          }
+      ],
+      "name": "addMapItem",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "adminTransferItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address[]",
+              "name": "users",
+              "type": "address[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "categoryIds",
+              "type": "uint256[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "typeIds",
+              "type": "uint256[]"
+          }
+      ],
+      "name": "airdropItems",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "categories",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "typesCount",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "totalStock",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "chance",
+              "type": "uint256"
+          },
+          {
+              "internalType": "bool",
+              "name": "hasLimit",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "typeId",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "cityId",
+              "type": "uint256"
+          }
+      ],
+      "name": "cityAllocatedForBusiness",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "consumer",
+      "outputs": [
+          {
+              "internalType": "contract IVRFv2Consumer",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "finishOpenCrate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getCategories",
+      "outputs": [
+          {
+              "components": [
+                  {
+                      "components": [
+                          {
+                              "internalType": "uint256",
+                              "name": "stock",
+                              "type": "uint256"
+                          },
+                          {
+                              "internalType": "uint256",
+                              "name": "chance",
+                              "type": "uint256"
+                          }
+                      ],
+                      "internalType": "struct MafiaInventory.Type[]",
+                      "name": "types",
+                      "type": "tuple[]"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "typesCount",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "totalStock",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "chance",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "bool",
+                      "name": "hasLimit",
+                      "type": "bool"
+                  }
+              ],
+              "internalType": "struct MafiaInventory.Category[]",
+              "name": "",
+              "type": "tuple[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "start",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "end",
+              "type": "uint256"
+          }
+      ],
+      "name": "getItems",
+      "outputs": [
+          {
+              "components": [
+                  {
+                      "internalType": "uint256",
+                      "name": "categoryId",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "typeId",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                  }
+              ],
+              "internalType": "struct MafiaInventory.Item[]",
+              "name": "list",
+              "type": "tuple[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+          }
+      ],
+      "name": "getNonceStatus",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "ogCreateAddress",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "consumerAddress",
+              "type": "address"
+          }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "isAirdropCategory",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "name": "isAuthorized",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "categoryId",
+              "type": "uint256"
+          }
+      ],
+      "name": "isCategoryAvailable",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "isCityAllocatedForBusiness",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "categoryId",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "typeId",
+              "type": "uint256"
+          }
+      ],
+      "name": "isTypeAvailble",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "itemCity",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "itemMapPosition",
+      "outputs": [
+          {
+              "internalType": "uint8",
+              "name": "x",
+              "type": "uint8"
+          },
+          {
+              "internalType": "uint8",
+              "name": "y",
+              "type": "uint8"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "itemWeight",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "name": "items",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "categoryId",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "typeId",
+              "type": "uint256"
+          },
+          {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "latestAirdropTimestamp",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "mafia",
+      "outputs": [
+          {
+              "internalType": "contract IERC20",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "map",
+      "outputs": [
+          {
+              "internalType": "contract IMafiaMap",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "ogCrate",
+      "outputs": [
+          {
+              "internalType": "contract IOGCrate",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "ogNFT",
+      "outputs": [
+          {
+              "internalType": "contract IOGCrate",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "",
+              "type": "uint256[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "",
+              "type": "uint256[]"
+          },
+          {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes"
+          }
+      ],
+      "name": "onERC1155BatchReceived",
+      "outputs": [
+          {
+              "internalType": "bytes4",
+              "name": "",
+              "type": "bytes4"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          },
+          {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes"
+          }
+      ],
+      "name": "onERC1155Received",
+      "outputs": [
+          {
+              "internalType": "bytes4",
+              "name": "",
+              "type": "bytes4"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "requestOpenCrate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "categoryId",
+              "type": "uint256"
+          },
+          {
+              "internalType": "bool",
+              "name": "value",
+              "type": "bool"
+          }
+      ],
+      "name": "setAirdropCategory",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+          },
+          {
+              "internalType": "bool",
+              "name": "value",
+              "type": "bool"
+          }
+      ],
+      "name": "setAuthorized",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256[]",
+              "name": "itemIds",
+              "type": "uint256[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "cities",
+              "type": "uint256[]"
+          }
+      ],
+      "name": "setItemCity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+          }
+      ],
+      "name": "setMafiaAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+          }
+      ],
+      "name": "setMapAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+          }
+      ],
+      "name": "setOGNFTAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4"
+          }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "transferItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "itemIds",
+              "type": "uint256[]"
+          }
+      ],
+      "name": "transferItems",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+          }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "unwrapKeyItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "unwrapMafiaItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "unwrapOGCrate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "unwrapOGNFT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+          }
+      ],
+      "name": "unwrapOGNFTItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256[]",
+              "name": "categoryIds",
+              "type": "uint256[]"
+          },
+          {
+              "components": [
+                  {
+                      "components": [
+                          {
+                              "internalType": "uint256",
+                              "name": "stock",
+                              "type": "uint256"
+                          },
+                          {
+                              "internalType": "uint256",
+                              "name": "chance",
+                              "type": "uint256"
+                          }
+                      ],
+                      "internalType": "struct MafiaInventory.Type[]",
+                      "name": "types",
+                      "type": "tuple[]"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "typesCount",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "totalStock",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "chance",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "bool",
+                      "name": "hasLimit",
+                      "type": "bool"
+                  }
+              ],
+              "internalType": "struct MafiaInventory.Category[]",
+              "name": "list",
+              "type": "tuple[]"
+          }
+      ],
+      "name": "updateCategories",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "name": "userNonceStatus",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "isPending",
+              "type": "bool"
+          },
+          {
+              "internalType": "uint256",
+              "name": "requestId",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "typeId",
+              "type": "uint256"
+          }
+      ],
+      "name": "wrapMafiaItem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "wrapOGCrate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "wrapOGNFT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  }
+]
