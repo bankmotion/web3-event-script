@@ -6,15 +6,21 @@ import config from "../../config";
 const invevntoryJsonFile = "./src/abis/mafiaInventory.json";
 const inventoryAbi = JSON.parse(fs.readFileSync(invevntoryJsonFile, "utf-8"));
 
-const web3 = new Web3(config.g4RpcProvider);
+let web3 = new Web3(config.g4RpcProvider);
 const inventoryContractAddr = "0x2c60de22Ec20CcE72245311579c4aD9e5394Adc4";
-const inventoryContract = new web3.eth.Contract(
+let inventoryContract = new web3.eth.Contract(
   inventoryAbi,
   inventoryContractAddr
 );
 
 const getPastEvents = async (from: number, to: number) => {
   try {
+    web3 = new Web3(config.g4RpcProvider);
+    inventoryContract = new web3.eth.Contract(
+      inventoryAbi,
+      inventoryContractAddr
+    );
+
     const toBlock = Math.min(from + 9000, to);
     console.log(`inventory past event started from ${from} to ${toBlock}`);
 
